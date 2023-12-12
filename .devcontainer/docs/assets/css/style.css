@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Chango&family=Hi+Melody&family=Julius+Sans+One&family=Ysabeau+Office:wght@300&display=swap");
+
+html {
+  font-size: 1rem;
+}
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}
+
+hr {
+  border-top: 1px solid !important;
+  width: 50vw;
+  color: #a48936;
+}
+
+.topic {
+  color: #a48936;
+  font-size: 73px;
+  font-family: Julius Sans One;
+  font-weight: 400;
+  background-color: #ebe0d6;
+  text-align: center;
+}
+.topic-container {
+  width: 100%;
+  height: 136px;
+  background-color: #ebe0d6;
+  padding: 30px;
+}
