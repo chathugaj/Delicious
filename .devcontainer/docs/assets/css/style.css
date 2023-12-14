@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Chango&family=Hi+Melody&family=Julius+Sans+One&family=Ysabeau+Office:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chango&family=Gabriela&family=Hi+Melody&family=Julius+Sans+One&family=Ysabeau+Office:wght@300&display=swap");
 
 html {
   font-size: 1rem;
@@ -22,15 +23,18 @@ html {
   }
 }
 
+body {
+  font-family: "Gabriela", serif !important;
+}
+
 hr {
-  border-top: 1px solid !important;
+  border-top: 1px solid;
   width: 50vw;
   color: #a48936;
 }
 
 .topic {
   color: #a48936;
-  font-size: 73px;
   font-family: Julius Sans One;
   font-weight: 400;
   background-color: #ebe0d6;
@@ -42,10 +46,8 @@ hr {
   background-color: #ebe0d6;
   padding: 30px;
 }
-.navbar-override {
-  padding: 2rem 2rem !important;
+.navbar {
   margin: 15px;
-  border-color: #a48936 !important;
-  border: 1px solid;
-  background-color: white !important;
+  border: 1px solid #a48936;
+  background-color: white;
 }
