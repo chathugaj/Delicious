@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  font-family: "Gabriela", serif !important;
+  font-family: "Gabriela", serif;
 }
 
 hr {
@@ -50,4 +50,34 @@ hr {
   margin: 15px;
   border: 1px solid #a48936;
   background-color: white;
+}
+
+.nav-item {
+  font-size: 1.5rem;
+  word-wrap: normal;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #a48936;
+}
+
+.jumbotron {
+  padding: 0;
+}
+
+.jumbotron .container img {
+  height: 50%;
+}
+
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
 }
