@@ -1,4 +1,4 @@
-<form action="{% url 'customer_details' %}" method="post">
+<form action="" method="post">
   <input
     type="date"
     name="reservation_date"
@@ -7,7 +7,7 @@
   />
   <select name="time_slot" id="time_slot">
     {% for t in time_slot_list %}
-    <option value="{{t.id}}">{{t.value}}</option>
+    <option value="{{t.id}}">{{t.time_slot}}</option>
     {% endfor%}
   </select>
   <select name="number_of_guests" id="number_of_guests">
