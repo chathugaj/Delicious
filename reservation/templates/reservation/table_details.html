@@ -1,15 +1,18 @@
-<form action="" method="post">
+<form action="{% url 'customer' %}" method="post">
+  {% csrf_token %}
   <input
     type="date"
     name="reservation_date"
     id="reservation_date"
     placeholder="yyyy-mm-dd"
   />
+  <br />
   <select name="time_slot" id="time_slot">
     {% for t in time_slot_list %}
     <option value="{{t.id}}">{{t.time_slot}}</option>
     {% endfor%}
   </select>
+  <br />
   <select name="number_of_guests" id="number_of_guests">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -20,4 +23,6 @@
     <option value="7">7</option>
     <option value="8">8</option>
   </select>
+  <br />
+  <input type="submit" value="Book Now" />
 </form>

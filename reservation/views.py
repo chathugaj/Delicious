@@ -23,4 +23,10 @@ def table_details(request):
 
 
 def customer_details(request):
-    return HttpResponse("customer details")
+    context = {
+        "reservation_date": request.POST['reservation_date'],
+        "time_slot": request.POST['time_slot'],
+        "number_of_guests": request.POST['number_of_guests']
+    }
+
+    return render(request, "reservation/customer_details.html", context)
