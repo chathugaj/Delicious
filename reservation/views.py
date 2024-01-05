@@ -22,7 +22,7 @@ def confirmation(request):
     Customer(first_name=first_name, last_name=last_name, email=email, phone=phone).save()
     c = Customer.objects.last()
     t = TimeSlot.objects.get(pk=time_slot)
-
+    
     r = Reservation(reservation_date=dateparse.parse_date(reservation_date), number_of_guests=number_of_guests, customer=c, time_slot=t)
     r.save()
 
@@ -56,6 +56,10 @@ def customer_details(request):
 
     return render(request, "reservation/customer_details.html", context)
 
-# def reservations():
-#     reservations = Reservation.objects.all()
-#     for reservation in reservations:
+
+def reservations(request):
+    reservations = Reservation.objects.all()
+    context = {
+        "reservation_details": reservations
+    }
+    return render(request, "reservation/reservations.html", context)
