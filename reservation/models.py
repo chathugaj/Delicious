@@ -17,14 +17,14 @@ class Customer(models.Model):
     phone = models.CharField(max_length=18)
 
     def __str__(self) -> str:
-        return self.first_name + " " + self.last_names
+        return '{} {}'.format(self.first_name, self.last_name)
 
 
 class Reservation(models.Model):
-    time_slot = models.ForeignKey(TimeSlot, on_delete=models.CASCADE)
+    time_slot = models.ForeignKey(TimeSlot, on_delete=models.DO_NOTHING)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     reservation_date = models.DateField("Reservation date")
-    number_of_guests_int = models.IntegerField(default=2)
+    number_of_guests = models.IntegerField(default=2)
 
     def __str__(self) -> str:
         return self.reservation_date
