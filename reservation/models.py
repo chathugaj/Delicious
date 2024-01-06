@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-# Chioces
+# Choices
 TIME_SLOTS = (
     (1, "16:00"), (2, "16:30"), (3, "17:00"), (4, "17:30"), (5, "18:00"),
     (6, "18:30"), (7, "19:00"), (8, "19:30"), (9, "20:00"), (10, "20:30")
