@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <p>{{object.reservation_date}} - {{ object.time_slot }}</p>
+    <p>Table {{object.table_number}} is booked for {{object.number_of_guests}} guests</p>
+    <p>{{object.customer}}</p>
+</div>
+
+{% endblock %}

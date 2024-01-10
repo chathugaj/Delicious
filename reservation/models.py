@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 # Create your models here.
@@ -50,3 +51,6 @@ class Reservation(models.Model):
 
     def __str__(self) -> str:
         return str(self.reservation_date)
+
+    def get_absolute_url(self):
+        return reverse('reservation:reservation-customer-create', kwargs={"id": self.id})
