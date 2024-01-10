@@ -1,11 +1,11 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
 # Choices
 TIME_SLOTS = (
-    (1, "16:00"), (2, "16:30"), (3, "17:00"), (4, "17:30"), (5, "18:00"),
-    (6, "18:30"), (7, "19:00"), (8, "19:30"), (9, "20:00"), (10, "20:30")
+    (1, "16:00 - 17:30"), (2, "17:30 - 19:00"), (3, "19:00 - 20:30"), (4, "20:30 - 22:00")
 )
 TABLE_CAPACITIES = (
     (2, "2"), (4, "4"), (6, "6"), (8, "8")
@@ -40,8 +40,9 @@ class Reservation(models.Model):
     """The model that handles the reservations"""
     time_slot = models.IntegerField(choices=TIME_SLOTS, default=2)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    reservation_date = models.DateField()
+    reservation_date = models.DateField(default=timezone.now)
     number_of_guests = models.IntegerField(default=2)
+    table_number = models.ForeignKey(Table, on_delete=models.DO_NOTHING)
 
     class Meta:
         """Ordering with reservation_date and time_slot"""

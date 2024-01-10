@@ -1,6 +1,10 @@
 {% load crispy_forms_tags %}
-<form method="post">
+<form action="{% url 'customer' %}" method="post">
   {% csrf_token %}
   {% crispy reservation_form %}
+
+  {% for error in reservation_form.errors %}
+        <span class="text-danger">{{ error }}</span>
+    {% endfor %}
   <input type="submit" value="Book Now" />
 </form>
