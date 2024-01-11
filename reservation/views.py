@@ -4,7 +4,7 @@ from django.views.generic import CreateView, ListView, DetailView
 from formtools.wizard.views import SessionWizardView
 
 from .forms import ReservationModelForm, CustomerModelForm
-from .models import Reservation
+from .models import Reservation, Customer, Table
 
 
 # Create your views here.
@@ -43,9 +43,19 @@ class ReservationCreateWizardView(SessionWizardView):
     form_list = [ReservationModelForm, CustomerModelForm]
 
     def done(self, form_list, form_dict, **kwargs):
-        customer = form_dict['customer'].save()
-        reservation = form_dict['reservation'].save()
-        return HttpResponseRedirect('reservation/reservation-detail.html')
+        customer_email = form_dict['1'].save()
+        customer_ = list(Customer.objects.all().filter(email=customer_email))[0]
+
+        # Save without committing to the database
+        reservation_form = form_dict['0']
+        reservation = reservation_form.save(commit=False)
+        reservation.customer = customer_
+
+        reservation.save()
+
+        saved_ = list(Reservation.objects.all().filter(pk=reservation_form.instance.id))[0]
+
+        return HttpResponseRedirect("/reservation/{}".format(reservation_form.instance.id))
 
 
 def customer_details(request):

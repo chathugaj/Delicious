@@ -34,13 +34,13 @@ class Customer(models.Model):
     phone = models.CharField(max_length=18)
 
     def __str__(self) -> str:
-        return str('{} {}'.format(self.first_name, self.last_name))
+        return str(self.email)
 
 
 class Reservation(models.Model):
     """The model that handles the reservations"""
     time_slot = models.IntegerField(choices=TIME_SLOTS, default=2)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,)
     reservation_date = models.DateField(default=timezone.now)
     number_of_guests = models.IntegerField(default=2)
     table_number = models.ForeignKey(Table, on_delete=models.DO_NOTHING)
