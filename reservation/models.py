@@ -50,7 +50,7 @@ class Reservation(models.Model):
         ordering = ['reservation_date', 'time_slot']
 
     def __str__(self) -> str:
-        return str(self.reservation_date)
+        return str('{} {} {}'.format(self.customer, self.reservation_date, self.time_slot))
 
     def get_absolute_url(self):
         return reverse('reservation:reservation-details', kwargs={"id": self.id})
