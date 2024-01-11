@@ -36,4 +36,3 @@ Epic - Security
 - As the restaurant owner I want customers to verify their email address via a link sent to thier email account
 - As the restaurant owner I want customers to login, to view their reservations
 - As the restaurant owner I want my staff to login, to view, modify and cancel customer reservations
-- As the restaurant owner I want my staff to login, to create, modify and remove events
