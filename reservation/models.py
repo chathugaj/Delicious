@@ -53,4 +53,4 @@ class Reservation(models.Model):
         return str(self.reservation_date)
 
     def get_absolute_url(self):
-        return reverse('reservation:reservation-customer-create', kwargs={"id": self.id})
+        return reverse('reservation:reservation-detail', kwargs={"id": self.id})

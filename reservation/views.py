@@ -1,7 +1,9 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, ListView, DetailView
+from formtools.wizard.views import SessionWizardView
 
-from .forms import ReservationModelForm
+from .forms import ReservationModelForm, CustomerModelForm
 from .models import Reservation
 
 
@@ -30,6 +32,20 @@ class ReservationCreateView(CreateView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Reservation, id=id_)
+
+
+class ReservationCreateWizardView(SessionWizardView):
+    """This view handles the multi-step table reservation"""
+    form_list = [ReservationModelForm, CustomerModelForm]
+
+    def done(self, form_list, form_dict, **kwargs):
+        customer = form_dict['customer'].save()
+        reservation = form_dict['reservation'].save()
+        return HttpResponseRedirect('reservation/reservation-detail.html')
 
 
 def customer_details(request):

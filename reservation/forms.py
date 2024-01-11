@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
-from .models import Reservation
+from .models import Reservation, Customer
 
 
 class ReservationModelForm(forms.ModelForm):
@@ -27,20 +27,16 @@ class ReservationModelForm(forms.ModelForm):
             'number_of_guests': 'Number Of Guests',
         }
 
-    # def clean_reservation_date(self):
-    #     reservation_date = self.cleaned_data['reservation_date']
-    #
-    #     if reservation_date < timezone.now().date():
-    #         raise ValidationError('Reservation date must be in the future.')
-    #
-    #     return reservation_date
-    #
-    # def clean_number_of_guests(self):
-    #     number_of_guests = self.cleaned_data['number_of_guests']
-    #
-    #     if number_of_guests <= 0:
-    #         raise ValidationError('Number of guests must be a positive integer.')
-    #
-    #     return number_of_guests
 
+class CustomerModelForm(forms.ModelForm):
+    """Form to create customer record"""
 
+    class Meta:
+        model = Customer
+        fields = ['first_name', 'last_name', 'email', 'phone']
+        labels = {
+            'first_name': 'First Name',
+            'last_name': 'Last Name',
+            'email': 'Email',
+            'phone': 'Phone',
+        }
