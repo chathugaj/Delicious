@@ -2,7 +2,7 @@
 
 - This website is about The Dine Restaurant which is located in Stockholm, Sweden. Through this website customes can reserve their tables
   for dine and customer can view and manage their personal reservations through this website.
-- For the restaurant staff they view all the reservations and manage them .
+- For the restaurant staff they view all the reservations and manage them . Link to the website:TO DO
 
 # User stories
 
@@ -29,11 +29,6 @@ Epic - Reservation
 - As a customer I want to reseve a table for a particular date and time for a number of guests in advanced without payment
 - As a customer I want to be able to view my current reservations
 - As the restaurant owner I want my staff to be able to view current reservations of the restaurant, so that we can modify, cancel an existing reservation upon customer request
-
-Epic - Events
-
-- As the restaurant owner I want to be able to add, modify and remove events hosted by the restaurant, so that customers can view a list of events
-- As a customer I want to be able to view events hosted by the restaurant, so that I can attend
 
 Epic - Security
 
