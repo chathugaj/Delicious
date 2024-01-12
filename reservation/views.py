@@ -7,6 +7,9 @@ from formtools.wizard.views import SessionWizardView
 from .forms import ReservationModelForm, CustomerModelForm
 from .models import Reservation, Customer, Table
 
+from django.core.mail import send_mail
+from The_Dine_restaurant.settings import EMAIL_HOST_USER
+
 
 # Create your views here.
 
@@ -21,21 +24,6 @@ class ReservationDetailView(DetailView):
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
         return get_object_or_404(Reservation, id=id_)
-
-
-# class ReservationCreateView(CreateView):
-#     """Render the reservation form"""
-#     form_class = ReservationModelForm
-#     template_name = 'reservation/reservation_update.html'
-#     queryset = Reservation.objects.all()
-#
-#     def form_valid(self, form):
-#         print(form.cleaned_data)
-#         return super().form_valid(form)
-#
-#     def get_object(self, queryset=None):
-#         id_ = self.kwargs.get("id")
-#         return get_object_or_404(Reservation, id=id_)
 
 
 class ReservationUpdateView(UpdateView):
@@ -80,5 +68,7 @@ class ReservationCreateWizardView(SessionWizardView):
 
         # Commit to the database
         reservation.save()
+
+        send_mail("The Dine Restaurant: Table reservation confirmed", "Test", EMAIL_HOST_USER, [customer_email], fail_silently=False)
 
         return HttpResponseRedirect("/reservation/{}".format(reservation_form.instance.id))

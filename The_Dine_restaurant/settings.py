@@ -159,3 +159,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email configuration
+# https://docs.djangoproject.com/en/4.2/topics/email/#topic-email-backends
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'thedinerestaurant@gmail.com'
+EMAIL_HOST_PASSWORD = 'fiqtomrfathasopj'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
