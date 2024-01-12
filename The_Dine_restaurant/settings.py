@@ -38,7 +38,6 @@ AUTHENTICATION_BACKENDS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'reservation.apps.ReservationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
+    #Internal
+    'reservation.apps.ReservationConfig',
+    'home.apps.HomeConfig',
 
     # third-party
     'crispy_forms',
