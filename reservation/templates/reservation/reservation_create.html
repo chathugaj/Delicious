@@ -1,9 +1,29 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+{{ wizard.form.media }}
+{% endblock %}
 
 {% block content %}
-<form action="." class="form mb-2 p-2 form-style" method="post">
-  {% csrf_token %}
-  {{form.as_p}}
-  <input type="submit" value="Book Now" />
+<div>
+    <p>Book a Table at The Dine Restaurant</p>
+</div>
+<form action="" method="post">{% csrf_token %}
+    {{ wizard.management_form }}
+    {% if wizard.form.forms %}
+    {{ wizard.form.management_form }}
+    {% for form in wizard.form.forms %}
+    {{ form.as_p }}
+    {% endfor %}
+    {% else %}
+    {{ wizard.form }}
+    {% endif %}
+    {% if wizard.steps.prev %}
+    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% translate "prev step" %}</button>
+    <input type="submit" value="Confirm Booking"/>
+    {% else %}
+    <input type="submit" value="Book Now"/>
+    {% endif %}
 </form>
 {% endblock %}

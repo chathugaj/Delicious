@@ -23,25 +23,25 @@ class ReservationDetailView(DetailView):
         return get_object_or_404(Reservation, id=id_)
 
 
-class ReservationCreateView(CreateView):
-    """Render the reservation form"""
-    form_class = ReservationModelForm
-    template_name = 'reservation/reservation_create.html'
-    queryset = Reservation.objects.all()
-
-    def form_valid(self, form):
-        print(form.cleaned_data)
-        return super().form_valid(form)
-
-    def get_object(self, queryset=None):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(Reservation, id=id_)
+# class ReservationCreateView(CreateView):
+#     """Render the reservation form"""
+#     form_class = ReservationModelForm
+#     template_name = 'reservation/reservation_update.html'
+#     queryset = Reservation.objects.all()
+#
+#     def form_valid(self, form):
+#         print(form.cleaned_data)
+#         return super().form_valid(form)
+#
+#     def get_object(self, queryset=None):
+#         id_ = self.kwargs.get("id")
+#         return get_object_or_404(Reservation, id=id_)
 
 
 class ReservationUpdateView(UpdateView):
     """Render the reservation form"""
     form_class = ReservationModelForm
-    template_name = 'reservation/reservation_create.html'
+    template_name = 'reservation/reservation_update.html'
 
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
@@ -67,6 +67,7 @@ class ReservationDeleteView(DeleteView):
 class ReservationCreateWizardView(SessionWizardView):
     """This view handles the multi-step table reservation"""
     form_list = [ReservationModelForm, CustomerModelForm]
+    template_name = 'reservation/reservation_create.html'
 
     def done(self, form_list, form_dict, **kwargs):
         customer_email = form_dict['1'].save()
