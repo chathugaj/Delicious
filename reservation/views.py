@@ -65,6 +65,7 @@ class ReservationCreateWizardView(SessionWizardView):
         reservation_form = form_dict['0']
         reservation = reservation_form.save(commit=False)
         reservation.customer = customer_
+        reservation.table_number = ReservationModelForm.find_assignable_table(reservation.reservation_date, reservation.time_slot, reservation.number_of_guests)
 
         # Commit to the database
         reservation.save()
