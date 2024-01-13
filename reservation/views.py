@@ -69,6 +69,6 @@ class ReservationCreateWizardView(SessionWizardView):
         # Commit to the database
         reservation.save()
 
-        send_mail("The Dine Restaurant: Table reservation confirmed", "Test", EMAIL_HOST_USER, [customer_email], fail_silently=False)
+        send_mail("The Dine Restaurant: Table reservation confirmed", "Test", EMAIL_HOST_USER, [customer_email], fail_silently=True)
 
         return HttpResponseRedirect("/reservation/{}".format(reservation_form.instance.id))

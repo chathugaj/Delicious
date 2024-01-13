@@ -1,7 +1,7 @@
 from django import forms
 from django.utils import timezone
 
-from .models import Reservation, Customer, TABLE_CAPACITIES
+from .models import Reservation, Customer, TABLE_CAPACITIES, Table
 
 
 class ReservationModelForm(forms.ModelForm):
@@ -10,8 +10,8 @@ class ReservationModelForm(forms.ModelForm):
     class Meta:
         """Fields for the form"""
         model = Reservation
-        fields = ['reservation_date', 'time_slot', 'number_of_guests', 'table_number']
-        exclude = ('customer',)
+        fields = ['reservation_date', 'time_slot', 'number_of_guests']
+        exclude = ('customer', 'table_number')
 
         max_guests = max([t[0] for t in list(TABLE_CAPACITIES)])
 
@@ -49,6 +49,7 @@ class ReservationModelForm(forms.ModelForm):
             raise forms.ValidationError("Invalid number of guests")
 
     def clean_reservation_date(self):
+        """Validate reservation_date field"""
         reservation_date = self.cleaned_data.get('reservation_date')
 
         if reservation_date is None or reservation_date == '':
@@ -56,6 +57,10 @@ class ReservationModelForm(forms.ModelForm):
 
         if reservation_date < timezone.now().date():
             raise forms.ValidationError("This field requires today or a future date")
+
+
+
+
 
 
 
