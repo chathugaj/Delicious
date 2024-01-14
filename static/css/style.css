@@ -23,13 +23,25 @@ html {
   }
 }
 
+@include media-breakpoint-up(xl) {
+  html {
+    font-size: 1.8rem;
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  html {
+    font-size: 1.8rem;
+  }
+}
+
 body {
   font-family: "Gabriela", serif;
 }
 
 hr {
-  border-top: 1px solid;
-  width: 50vw;
+  border-top: 3px solid;
+  width: 80vw;
   color: #a48936;
 }
 
@@ -46,8 +58,9 @@ hr {
   background-color: #ebe0d6;
   padding: 30px;
 }
+
 .navbar {
-  margin: 15px;
+  margin: 5px;
   border: 1px solid #a48936;
   background-color: white;
 }
@@ -80,4 +93,13 @@ hr {
   padding-left: 0px;
   margin-right: 0px;
   margin-left: 0px;
+}
+
+# footer
+.footer {
+    background-color: #435058
+}
+
+.text-muted {
+    color: #B79019!important
 }
