@@ -2,7 +2,7 @@ from django import forms
 from django.db.models import Count
 from django.utils import timezone
 
-from .models import Reservation, Customer, TABLE_CAPACITIES, Table
+from .models import Reservation, Customer, TABLE_CAPACITIES, Table, TIME_SLOTS
 
 
 class ReservationModelForm(forms.ModelForm):
@@ -39,10 +39,6 @@ class ReservationModelForm(forms.ModelForm):
     @staticmethod
     def find_assignable_table(reservation_date, time_slot, number_of_guests):
         reservations_time_slot = Reservation.objects.all().filter(reservation_date=reservation_date, time_slot=time_slot)
-        # reservations_counts_per_table = (Reservation.objects.all().filter(reservation_date=reservation_date)
-        #                          .values('table', 'time_slot').annotate(total=Count('table')).order_by('total'))
-        #
-        # print(">>>>reservations_counts_per_table", reservations_counts_per_table)
 
         assignable_capacities = [t[0] for t in list(TABLE_CAPACITIES) if t[0] >= number_of_guests]
         assignable_tables = Table.objects.filter(capacity__in=assignable_capacities).order_by("capacity")
@@ -63,6 +59,26 @@ class ReservationModelForm(forms.ModelForm):
             return table_available[0]
         else:
             return list(assignable_tables)[0]
+
+    @staticmethod
+    def available_time_slots(reservation_date, time_slot, number_of_guests):
+        assignable_capacities = [t[0] for t in list(TABLE_CAPACITIES) if t[0] >= number_of_guests]
+        assignable_tables = Table.objects.filter(capacity__in=assignable_capacities).order_by("capacity")
+
+        available_options = [(at, i) for at in list(assignable_tables) for i in list(TIME_SLOTS)]
+
+        reserved_spot_count = (Reservation.objects.all().filter(reservation_date=reservation_date).values('reservation_date','time_slot')
+                               .annotate(total=Count('reservation_date')))
+
+        for res in reserved_spot_count:
+            for ao in available_options:
+                if res['total'] == ao[0].number_of_tables and res['time_slot'] == ao[1][0]:
+                    available_options.remove(ao)
+
+        print(">>>", available_options)
+        return [opt[1][1] for opt in available_options]
+
+
 
     def clean(self):
         # Get reserved tables for the same time date and time slot as this reservation
@@ -89,8 +105,10 @@ class ReservationModelForm(forms.ModelForm):
             raise forms.ValidationError("This field requires today or a future date")
 
         assignable_table_response = ReservationModelForm.find_assignable_table(reservation_date, time_slot, number_of_guests)
+        available_options = ReservationModelForm.available_time_slots(reservation_date, time_slot, number_of_guests)
+        print("available_options=", available_options)
         if assignable_table_response is None:
-            raise forms.ValidationError("We could not find any tables for the time slot")
+            raise forms.ValidationError("We could not find any tables for the time slot. Please try {}".format(available_options))
 
         return cleaned_data
 
