@@ -36,3 +36,8 @@
     color: red;
     list-style-type: none;
 }
+
+.helptext::before {
+    content: "\a";
+    white-space: pre;
+}
