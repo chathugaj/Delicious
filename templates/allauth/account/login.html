@@ -1,0 +1,32 @@
+{% extends "base_minimal.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+{% trans "Sign In" %}
+{% endblock head_title %}
+{% block content %}
+<div class="text-center" id="auth-form-set">
+    <h6 class="h6 mt-5 mb-3 font-weight-normal">THE DINE RESTAURANT</h6>
+    <h3 class="h3 mb-3 font-weight-normal auth-form-heading">Sign In</h3>
+
+    {% url 'account_login' as login_url %}
+    {% element form form=form method="post" action=login_url tags="entrance,login" class="form-signin" %}
+
+    {% slot body %}
+    {% csrf_token %}
+    {% element fields form=form unlabeled=False %}
+    {% endelement %}
+    {% if redirect_field_value %}
+    <input type="hidden"
+           name="{{ redirect_field_name }}"
+           value="{{ redirect_field_value }}"/>
+    {% endif %}
+    {% endslot %}
+    {% slot actions %}
+    {% element button type="submit" tags="prominent,login" %}
+    {% trans "Sign In" %}
+    {% endelement %}
+    {% endslot %}
+    {% endelement %}
+</div>
+{% endblock content %}

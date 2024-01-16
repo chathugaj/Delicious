@@ -17,7 +17,6 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -28,7 +27,7 @@ SECRET_KEY = 'django-insecure-twhjo$gs=_g2s(sgiy(qysd##uh3+wnyvux*9c)+=)4yx(^@_p
 DEV_MODE = os.environ.get('DEV_MODE', False)
 DEBUG = DEV_MODE
 
-ALLOWED_HOSTS = ['localhost','.herokuapp.com',]
+ALLOWED_HOSTS = ['localhost', '.herokuapp.com', ]
 
 SITE_ID = 1
 
@@ -50,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    #Internal
+    # Internal
     'reservation.apps.ReservationConfig',
     'home.apps.HomeConfig',
 
@@ -83,6 +82,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -103,7 +103,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'The_Dine_restaurant.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 if DEV_MODE:
@@ -117,7 +116,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -137,7 +135,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -149,7 +146,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -160,7 +156,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # Email configuration
 # https://docs.djangoproject.com/en/4.2/topics/email/#topic-email-backends
