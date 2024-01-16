@@ -6,7 +6,7 @@
     <img src="{% static 'images/restuarant.jpeg' %}" class="img-fluid" alt="Banner image"/>
 </div>
 <hr>
-<div>
+<div class="row">
     <h2>About</h2>
     <p>The Dine Restaurant is a beautifully classic, yet stylish and relaxed all-day dining restaurant in the heart of
         The Stockholm,Sweden.
@@ -17,7 +17,7 @@
         We look forward to welcoming you.</p>
 </div>
 <hr>
-<div>
+<div class="row">
     <div>
         <p>
             Restaurateur karl Johan creates together with
@@ -32,8 +32,8 @@
             Karl Johan and Linus Ljungquist with staff
         </p>
     </div>
-    <div>
-        <img src="{% static 'images/chef_1.jpeg' %}"/>
+    <div class="col-sm-4">
+        <img src="{% static 'images/chef_1.jpeg' %}" class="img-fluid" alt="Image of a chef"/>
     </div>
 </div>
 {% endblock %}
