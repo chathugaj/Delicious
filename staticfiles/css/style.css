@@ -81,6 +81,15 @@ hr {
     height: 8vh;
 }
 
+.navbar > * > .navbar-brand {
+    font-family: 'Julius Sans One', Sans-serif;
+    color: #a48936;
+}
+
+.navbar > * > button {
+    border: none;
+}
+
 .nav-item {
   word-wrap: normal;
 }
