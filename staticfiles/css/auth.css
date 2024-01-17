@@ -1,0 +1,43 @@
+/* Sign In */
+#auth-form-set > form {
+    width: 100%;
+    max-width: 450px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.auth-form-heading {
+    --bs-heading-color: #000;
+}
+
+#auth-form-set > form > button[type="submit"] {
+    --bs-btn-color: #000;
+    --bs-btn-bg: #fff;
+    --bs-btn-border-color: #a48936;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #a48936;
+    --bs-btn-hover-border-color: #a48936;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #a48936;
+    --bs-btn-active-border-color: #a48936;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #grey;
+    --bs-btn-disabled-border-color: #grey;
+}
+
+#auth-form-set > * > ul > li {
+    text-align: left;
+    font-size: 0.8rem;
+}
+
+.errorlist {
+    color: red;
+    list-style-type: none;
+}
+
+.helptext::before {
+    content: "\a";
+    white-space: pre;
+}
