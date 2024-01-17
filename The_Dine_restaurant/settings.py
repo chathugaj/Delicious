@@ -53,8 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Internal
-    'reservation.apps.ReservationConfig',
-    'home.apps.HomeConfig',
+    'reservation',
+    'home',
+    'menu',
 
     # third-party
     'crispy_forms',
