@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <p>{{object.reservation_date}} - {{ object.time_slot }}</p>
+    <p>Table {{object.table_number}} is booked for {{object.number_of_guests}} guests</p>
+    <p>{{object.customer}}</p>
+</div>
+
+<div>
+    <p>We have sent the booking confirmation to your email.</p>
+
+    {% if request.user.is_authenticated is None %}
+    <p>Please create an account to view and manage your bookings.
+        <a href="{% url 'account_signup' %}" >Sign Up</a>
+    </p>
+
+    <p>Have an account already? <a href="#" >Sign In</a></p>
+    {% endif %}
+</div>
+
+{% endblock %}
