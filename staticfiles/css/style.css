@@ -15,6 +15,9 @@ html {
   html {
     font-size: 1.2rem;
   }
+  .hero {
+    background-size: contain;
+  }
 }
 
 @include media-breakpoint-up(lg) {
@@ -45,6 +48,11 @@ hr {
   border-top: 1px solid;
   color: #a48936;
   opacity: 1.25;
+}
+
+.hero-image {
+    width: 100%
+    height: auto
 }
 
 .topic {
