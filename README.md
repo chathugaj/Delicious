@@ -1,8 +1,27 @@
-#The Dine Restaurant
+# The Dine Restaurant
 
-- This website is about The Dine Restaurant which is located in Stockholm, Sweden. Through this website customes can reserve their tables
-  for dine and customer can view and manage their personal reservations through this website.
-- For the restaurant staff they view all the reservations and manage them . Link to the website:TO DO
+The Dine Restaurant is restaurant located in Stockholm, Sweden. This website provides a website and a reservation management 
+system for the staff to manage the table reservations. It also provides the ability to manage their own reservations.
+
+[Live Link](https://the-dine-restaurant-73de8861d11f.herokuapp.com/)
+
+# User Experience Design
+## The Strategy Plane
+
+### Goals
+The two main goals of the web application are;
+- To provide a mechanism to customers of the restaurant to do the following in convenient manner;
+  - Reserve a tables with time slots
+  - View, edit or cancel the reservation
+- The staff will be able perform
+  - Track the spacing and capacity of the restaurant at a given time
+  - Track the reservations
+  - Update or cancel the reservations if needed
+
+### Agile planning
+
+
+
 
 # User stories
 
