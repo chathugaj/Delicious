@@ -127,7 +127,11 @@ hr {
 }
 
 .pb-6 {
-    padding-bottom: ($spacer * 6.5) !important;
+    padding-bottom: ($spacer * 9) !important;
+}
+
+.table-responsive {
+    min-height: 30vh
 }
 
 /*.pt-3 {

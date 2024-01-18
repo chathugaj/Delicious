@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="col-10 py-5">
 <div>
     <p>Book a Table at The Dine Restaurant</p>
 </div>
@@ -15,11 +16,10 @@
     {% if wizard.form.forms %}
     {{ wizard.form.management_form }}
     {% for form in wizard.form.forms %}
-    {{
-    <form action=""></form> }}
+    {{ form|crispy }}
     {% endfor %}
     {% else %}
-    {{ wizard.form }}
+    {{ wizard.form | crispy }}
     {% endif %}
     {% if wizard.steps.prev %}
     <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% translate "prev step" %}</button>
@@ -28,4 +28,5 @@
     <input type="submit" value="Book Now"/>
     {% endif %}
 </form>
+</div>
 {% endblock %}

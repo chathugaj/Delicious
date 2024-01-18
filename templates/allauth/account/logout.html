@@ -1,12 +1,12 @@
-{% extends "account/base_manage.html" %}
+{% extends "base_minimal.html" %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Sign Out" %}
 {% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
+<div class="text-center" id="auth-form-set">
+    <h6 class="h6 mt-5 mb-3 font-weight-normal">THE DINE RESTAURANT</h6>
+    <h3 class="h3 mb-3 font-weight-normal auth-form-heading">Sign Out</h3>
     <p>{% trans 'Are you sure you want to sign out?' %}</p>
     {% url 'account_logout' as action_url %}
     {% element form method="post" action=action_url no_visible_fields=True %}
@@ -24,4 +24,5 @@
             {% endelement %}
         {% endslot %}
     {% endelement %}
+</div>
 {% endblock content %}
