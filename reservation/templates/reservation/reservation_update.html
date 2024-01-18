@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
+<div class="col-10">
+  <h2>Update reservation</h2>
 <form action="." class="form mb-2 p-2 form-style" method="post">
   {% csrf_token %}
-  {{form.as_p}}
+  {{form|crispy}}
   <input type="submit" value="Update" />
 </form>
+</div>
 {% endblock %}

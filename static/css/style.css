@@ -130,6 +130,10 @@ hr {
     padding-bottom: ($spacer * 6.5) !important;
 }
 
+.table-responsive {
+    min-height: 30vh
+}
+
 /*.pt-3 {
     color: #a48936;
 }*.
