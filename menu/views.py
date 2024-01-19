@@ -1,8 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
-# Create your views here.
+from django.views.generic import TemplateView
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the menu.")
+class MenuView(TemplateView):
+    """Home page"""
+    template_name = "menu/index.html"

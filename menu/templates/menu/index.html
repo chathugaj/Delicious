@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row text-center">
+    <h1 class="p-5">Menu</h1>
+</div>
+<div class="row text-center">
+    <p>
+        If you have a food allergy, intolerance or sensitivity, please speak to your server about ingredients in our
+        dishes before you order your meal.
+    </p>
+</div>
+<div class="row text-center">
+    <img src="{% static 'images/thedine_menu.png' %}" class="img-fluid" alt="Menu image">
+</div>
+{% endblock %}
