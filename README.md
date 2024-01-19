@@ -5,6 +5,9 @@ system for the staff to manage the table reservations. It also provides the abil
 
 [Live Link](https://the-dine-restaurant-73de8861d11f.herokuapp.com/)
 
+Ui.dev for some reason couldn't connect to the heroku app at the time.
+![Responsive](./docs/images/responsive.png)
+
 # User Experience Design
 ## The Strategy Plane
 
@@ -25,12 +28,12 @@ under Epics. Epics were considered as project milestones in the kanban board. Wh
 milestones should be completed. This is reflected by the completion of user stories, under each milestone.
 User stories are provided with an acceptance criteria, so that we know if a user story is complete. 
 [Link to the board](https://github.com/users/chathugaj/projects/1/views/1)
-TODO image
+![Agile Board](./docs/images/agile_board.png)
 
 A separate spreadsheet was created to calculate the value of each user story using, value to the customer
 and the importance of the feature.
 [Link to the spreadsheet](https://docs.google.com/spreadsheets/d/1lVoxuDBHZh942KbaejMWFaZMcZhB6AS9aBnvEZTukfo/edit?usp=sharing)
-TODO Add Image
+![Task Priority](./docs/images/task_prioritization.png)
 
 #### Milestones / Epic 
 The project has five main Milestones
@@ -97,7 +100,7 @@ User Story - `As a developer I need to implement a navbar so that I can enable n
   - Sign Up
   - Sign out - Visible only to a logged in user
 
-TODO Image
+![Navigation](./docs/images/home_1.png)
 
 #### Home Page
 User story - `As the restaurant owner I want a home page, so that customers can view information about my restaurant`
@@ -105,34 +108,34 @@ User story - `As the restaurant owner I want a home page, so that customers can 
 - Provides Information about the restaurant and the owner to the users
 - Contains a hero image about, and about the restaurant owner
 
-TODO Image
+![Home](./docs/images/home_2.png)
 
 #### Footer
 User story = `As a developer I need to implement a footer so that I can provide copyrights, social media links`
 
 - Provides social media linkes to facebook, twitter, Instagram
 - Also contains copyright information
-TODO image
+![Footer](./docs/images/footer.png)
 
 #### Contact Us. Opening Hours
 User story - `implement a contact and Open hours  so that I can provide contact information and information opening hours`
 
 - Provides contact information and information on opening hours of the restaurant
-TODO image
+![Contact Us](./docs/images/contact.png)
 
 #### Menu Page
 User story - `As the restaurant owner I want to show the menu, so that customer can view it in the website`
 
 - Provides the menu that is served by the restaurant. Customers can navigate and view the menu before making decision to 
-TODO imag
+![Menu](./docs/images/menu.png)
 
 #### Book a Table
 User story - `As a customer I want to reseve a table for a particular date and time for a number of guests in advanced without payment`
 
 - Provides the capabiliy to reserve a table for the date and time. 
 - Any customer can make a  reservation, even the unauthorised
-
-TODO images
+![Book a table](./docs/images/create_res_1.png)
+![Book a table](./docs/images/create_res_2.png)
 
 #### Reservation
 User story - `As a customer I want to be able to view my current reservations`
@@ -143,23 +146,21 @@ so that we can modify, cancel an existing reservation upon customer request`
 - Customers will see their reservations and will be able to edit or cancel
 - The staff will be able see reservations for any customer 
 
-TODO images
+![Reservations](./docs/images/reservations_list.png)
 
 #### Edit Reservation
 User story - `As the restaurant owner I want my staff to be able to view current reservations of the restaurant, 
 so that we can modify, cancel an existing reservation upon customer request`
 
 - Customer or the staff member is allowed to edit the reservations
-
-TODO image
+![Edit](./docs/images/edit_reservation.png)
 
 #### Delete Reservation 
 User story - `As the restaurant owner I want my staff to be able to view current reservations of the restaurant, 
 so that we can modify, cancel an existing reservation upon customer request`
 
 - Customer or the staff member is allowed to delete / cancel the reservations
-
-TODO image
+![Delete](./docs/images/cancel.png)
 
 ### Error pages
 
@@ -172,15 +173,20 @@ User story - `As a developer I want to redirect unauthorized users to 403 page, 
 - 404 error page is used to indicate a broken link
 - 403 error page is used, when authorization error occurres
 - 500 error page is a general error page for all other types of errors
+![404](./docs/images/404.png)
 
 ### Features left to implement
 - Ability to edit the restaurant menu.
 - Favicon
+- User profile
 
 ## The Skeleton Plane
 ### Design
 
-TODO images
+Figma was used to design the website before the implementation.
+
+![Figma Home](./docs/images/home_page.png)
+![Figma Menu](./docs/images/menu_figma.png)
 
 ### Database Design
 
@@ -191,6 +197,8 @@ Customer, Reservationslinked through foriegn keys. This allows users to view and
 Reservations are also linked to tables which gives the capability to track the capacity of the restaraunt and manage the crowd.
 
 Entity Relationship diagram is created using DBeaver.
+
+![ERD](./docs/images/er_diagram.png)
 
 ### Security
 Views are secured by django class based view mixins. Data access was restricted based on whether the user
@@ -217,6 +225,44 @@ django-formtools==2.5.1 - Multi step form wizard
 
 ### Testing
 Testing was performed manually after create a test matrix
+
+![Test Matrix](./docs/images/test_cases.png)
+
+Lighthouse browser tool was used to test the website's compatibility with standards, performance, etc....
+![Lighthouse](./docs/images/lighthouse.png)
+
+## Deployment
+
+### Version control
+This is version controlled using git and github.
+
+### Heroku deployment
+This is deployed in Heroku. Deployment steps are as follows;
+1. Create a Heroku account, if you don't have one already
+2. Select create new app
+3. Enter app name
+4. Select region and click create app
+5. Go to settings and click reveal config vars
+6. Add the following configuration variables
+    - DATABASE_URL (provisioned through https://neon.tech/)
+    - EMAIL_HOST_PASSWORD for sending emails
+7. Click deploy tab
+8. Scroll down, connect to Github
+9. Find the repository and connect
+10. In the manual deploy choose the main branch and click deploy
+
+Visit the live link: [The Dine Restaurant](https://the-dine-restaurant-73de8861d11f.herokuapp.com/)
+
+## Credits
+Content:
+  - https://rolfskok.se/boka-bord
+  - https://www.gordonramsayrestaurants.com/river-restaurant/
+Images:
+  - https://www.freepik.com/
+Mentor:
+  - Gareth McGirr
+Fonts
+  - Fontawesome
 
 
 
