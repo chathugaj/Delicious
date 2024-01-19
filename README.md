@@ -184,6 +184,43 @@ TODO images
 
 ### Database Design
 
+The database model is designed to hold necessary data for customers to create reservations. If they want to they can 
+create an account and view their reservations. It also helps to manage the capacity of the restaurants at a given time.
+
+Customer, Reservationslinked through foriegn keys. This allows users to view and update reservations later on.
+Reservations are also linked to tables which gives the capability to track the capacity of the restaraunt and manage the crowd.
+
+Entity Relationship diagram is created using DBeaver.
+
+### Security
+Views are secured by django class based view mixins. Data access was restricted based on whether the user
+is a staff member or not.
+
+Environment variables are store in env.py for local development. During heroku deployments configurations 
+were added to the heroku configurations. This secures the keys and passwords, by not having to be commited
+to a public code repo.
+
+### Technologies
+- HTML, CSS, Bootstrap - Content structure was created using HTML and CSS combined with Bootstrap is used to style the website
+- Python, Django - Django framework is used to create the application structure and python was used as the main programming language
+- VSCode - IDE used in developing the web app
+- GitHub, Git - Git is used as the source code versioning system on the Github cloud platform to store the code
+- Figma - Figma is used to create the prelimineray website design
+
+#### Python modules used
+- crispy-bootstrap5==2023.10 - Styling the forms with bootstrap
+dj-database-url==0.5.0 - Parsing the db urls using environment variables
+Django==4.2.8 - Main runtime framework for the web application
+django-allauth==0.60.0 - Authentication module
+django-crispy-forms==2.1 - Module that handles the bootstrap styling of forms
+django-formtools==2.5.1 - Multi step form wizard
+
+### Testing
+Testing was performed manually after create a test matrix
+
+
+
+
 
 
 
