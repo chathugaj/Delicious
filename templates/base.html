@@ -23,11 +23,13 @@
 
 <body>
 <!-- Navbar and Title -->
-{% include 'includes/navbar.html' %}
-
+<header>
+    {% include 'includes/navbar.html' %}
+</header>
 <main class="pb-5 justify-content-center">
-    <div class="container pb-5 justify-content-center">
-        <div class="row justify-content-center">
+    <div class=" pb-5 justify-content-center">
+
+        <div class="justify-content-center">
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
@@ -36,9 +38,7 @@
     </div>
 
 </main>
-
 {% include 'includes/footer.html' %}
-
 {% block javascript %}
 <script src="https://kit.fontawesome.com/31e34e6a2a.js" crossorigin="anonymous"></script>
 {% endblock %}

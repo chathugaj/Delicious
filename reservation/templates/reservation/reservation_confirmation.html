@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
+<div class="text-center">
     <p>{{object.reservation_date}} - {{ object.time_slot }}</p>
     <p>Table {{object.table_number}} is booked for {{object.number_of_guests}} guests</p>
     <p>{{object.customer}}</p>
 </div>
 
-<div>
+<div class="text-center">
     <p>We have sent the booking confirmation to your email.</p>
 
     {% if request.user.is_authenticated is None %}
