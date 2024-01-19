@@ -2,6 +2,7 @@ from datetime import date, timedelta
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
@@ -54,7 +55,6 @@ class ReservationUpdateView(UpdateView):
         return get_object_or_404(Reservation, id=id_)
 
     def form_valid(self, form):
-        print(form.cleaned_data)
         return super().form_valid(form)
 
 
@@ -80,10 +80,13 @@ class ReservationCreateWizardView(SessionWizardView):
         customer_form = form_dict['1']
 
         customer_email = customer_form.instance
-        customer_ = list(Customer.objects.all().filter(email=customer_email))[0]
-        if customer_ is None:
+        customer_list = list(Customer.objects.all().filter(email=customer_email))
+
+        if not customer_list:
             customer_email = customer_form.save()
             customer_ = list(Customer.objects.all().filter(email=customer_email))[0]
+        else:
+            customer_ = customer_list[0]
 
         # Save without committing to the database
         reservation = reservation_form.save(commit=False)
@@ -97,6 +100,13 @@ class ReservationCreateWizardView(SessionWizardView):
         # Commit to the database
         reservation.save()
 
-        send_mail("The Dine Restaurant: Table reservation confirmed", "Test", EMAIL_HOST_USER, [customer_email], fail_silently=True)
+        content = render_to_string("reservation/email/reservation_confirmation.txt", {
+            "first_name": customer_.first_name,
+            "last_name":customer_.last_name,
+            "reservation_date": reservation.reservation_date,
+            "time_slot": reservation.time_slot,
+            "number_of_guests": reservation.number_of_guests,
+        })
+        send_mail("The Dine Restaurant: Table reservation confirmed", content, EMAIL_HOST_USER, [customer_email], fail_silently=True)
 
         return HttpResponseRedirect("/reservation/confirmation/{}".format(reservation_form.instance.id))

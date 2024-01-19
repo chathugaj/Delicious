@@ -31,10 +31,6 @@ class ReservationModelForm(forms.ModelForm):
             'number_of_guests': 'Number Of Guests',
         }
 
-    @staticmethod
-    def send_email():
-        print("Inside send email")
-        pass
 
     @staticmethod
     def find_assignable_table(reservation_date, time_slot, number_of_guests):
@@ -75,7 +71,6 @@ class ReservationModelForm(forms.ModelForm):
                 if res['total'] == ao[0].number_of_tables and res['time_slot'] == ao[1][0]:
                     available_options.remove(ao)
 
-        print(">>>", available_options)
         return [opt[1][1] for opt in available_options]
 
 
@@ -106,7 +101,7 @@ class ReservationModelForm(forms.ModelForm):
 
         assignable_table_response = ReservationModelForm.find_assignable_table(reservation_date, time_slot, number_of_guests)
         available_options = ReservationModelForm.available_time_slots(reservation_date, time_slot, number_of_guests)
-        print("available_options=", available_options)
+
         if assignable_table_response is None:
             raise forms.ValidationError("We could not find any tables for the time slot. Please try {}".format(available_options))
 

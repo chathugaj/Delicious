@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="text-center">
-    <p>{{object.reservation_date}} - {{ object.time_slot }}</p>
+    <p>{{object.reservation_date}} - {{ object.get_time_slot_display }}</p>
     <p>Table {{object.table_number}} is booked for {{object.number_of_guests}} guests</p>
     <p>{{object.customer}}</p>
 </div>

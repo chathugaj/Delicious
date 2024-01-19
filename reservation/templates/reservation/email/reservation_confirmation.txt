@@ -1,0 +1,10 @@
+Hello {{first_name}},
+
+Your reservation is confirmed.
+
+Name: {{first_name}} {{last_name}}
+Date: {{reservation_date}} time: {{time_slot}}
+Number of guests: {{number_of_guests}}
+
+The Dine Staff
+thedinerestaurant@gmail.comß
