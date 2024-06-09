@@ -1,4 +1,7 @@
+import re
+
 from django import forms
+from django.core.validators import validate_email
 from django.db.models import Count
 from django.utils import timezone
 
@@ -18,7 +21,7 @@ class ReservationModelForm(forms.ModelForm):
 
         widgets = {
             'reservation_date': forms.DateInput(
-                format=('%Y-%m-%d'),
+                format='%Y-%m-%d',
                 attrs={'class': 'form-control',
                        'placeholder': 'Select a date',
                        'type': 'date',
@@ -31,10 +34,10 @@ class ReservationModelForm(forms.ModelForm):
             'number_of_guests': 'Number Of Guests',
         }
 
-
     @staticmethod
     def find_assignable_table(reservation_date, time_slot, number_of_guests):
-        reservations_time_slot = Reservation.objects.all().filter(reservation_date=reservation_date, time_slot=time_slot)
+        reservations_time_slot = Reservation.objects.all().filter(reservation_date=reservation_date,
+                                                                  time_slot=time_slot)
 
         assignable_capacities = [t[0] for t in list(TABLE_CAPACITIES) if t[0] >= number_of_guests]
         assignable_tables = Table.objects.filter(capacity__in=assignable_capacities).order_by("capacity")
@@ -63,8 +66,9 @@ class ReservationModelForm(forms.ModelForm):
 
         available_options = [(at, i) for at in list(assignable_tables) for i in list(TIME_SLOTS)]
 
-        reserved_spot_count = (Reservation.objects.all().filter(reservation_date=reservation_date).values('reservation_date','time_slot')
-                               .annotate(total=Count('reservation_date')))
+        reserved_spot_count = (
+            Reservation.objects.all().filter(reservation_date=reservation_date).values('reservation_date', 'time_slot')
+            .annotate(total=Count('reservation_date')))
 
         for res in reserved_spot_count:
             for ao in available_options:
@@ -72,8 +76,6 @@ class ReservationModelForm(forms.ModelForm):
                     available_options.remove(ao)
 
         return [opt[1][1] for opt in available_options]
-
-
 
     def clean(self):
         # Get reserved tables for the same time date and time slot as this reservation
@@ -99,11 +101,13 @@ class ReservationModelForm(forms.ModelForm):
         if reservation_date < timezone.now().date():
             raise forms.ValidationError("This field requires today or a future date")
 
-        assignable_table_response = ReservationModelForm.find_assignable_table(reservation_date, time_slot, number_of_guests)
+        assignable_table_response = ReservationModelForm.find_assignable_table(reservation_date, time_slot,
+                                                                               number_of_guests)
         available_options = ReservationModelForm.available_time_slots(reservation_date, time_slot, number_of_guests)
 
         if assignable_table_response is None:
-            raise forms.ValidationError("We could not find any tables for the time slot. Please try {}".format(available_options))
+            raise forms.ValidationError(
+                "We could not find any tables for the time slot. Please try {}".format(available_options))
 
         return cleaned_data
 
@@ -118,5 +122,17 @@ class CustomerModelForm(forms.ModelForm):
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'Email',
-            'phone': 'Phone',
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        phone = cleaned_data.get('phone')
+
+        validate_email(email)
+
+        check_phone = re.search("^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$", phone)
+        if not check_phone:
+            raise forms.ValidationError("Phone number is invalid")
+
+        return cleaned_data

@@ -93,7 +93,7 @@ class ReservationCreateWizardView(SessionWizardView):
         reservation.customer = customer_
         assignable_table_response = ReservationModelForm.find_assignable_table(reservation.reservation_date, reservation.time_slot,
                                                                                reservation.number_of_guests)
-        if (assignable_table_response is None):
+        if assignable_table_response is None:
             raise RuntimeError("Unfortunately we couldn't find any available tables for the day. Please contact us through the phone.")
         reservation.table = assignable_table_response
 

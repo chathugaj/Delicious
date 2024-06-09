@@ -16,7 +16,7 @@
     {% if wizard.form.forms %}
     {{ wizard.form.management_form }}
     {% for form in wizard.form.forms %}
-    {{ form|crispy }}
+    {{ form|as_crispy_errors }}
     {% endfor %}
     {% else %}
     {{ wizard.form | crispy }}

@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -31,7 +32,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     email = models.CharField(max_length=100)
-    phone = models.CharField(max_length=18)
+    phone = models.CharField(max_length=23)
 
     def __str__(self) -> str:
         return str(self.email)
@@ -54,4 +55,3 @@ class Reservation(models.Model):
 
     def get_absolute_url(self):
         return reverse('reservation:reservation-details', kwargs={"id": self.id})
-

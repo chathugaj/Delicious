@@ -7,4 +7,4 @@ Date: {{reservation_date}} time: {{time_slot}}
 Number of guests: {{number_of_guests}}
 
 The Dine Staff
-thedinerestaurant@gmail.comß
+thedinerestaurant@gmail.com
