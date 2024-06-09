@@ -67,7 +67,7 @@ class ReservationDeleteView(DeleteView):
         return get_object_or_404(Reservation, id=id_)
 
     def get_success_url(self):
-        return reverse('reservation:reservation-list')
+        return reverse('reservation:reservation_list')
 
 
 class ReservationCreateWizardView(SessionWizardView):

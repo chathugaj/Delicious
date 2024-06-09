@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEV_MODE = os.environ.get('DEV_MODE')
 DEBUG = DEV_MODE == '1'
 
-ALLOWED_HOSTS = ['localhost', '.herokuapp.com', ]
+ALLOWED_HOSTS = ['localhost', '.herokuapp.com', '127.0.0.1']
 
 SITE_ID = 1
 
