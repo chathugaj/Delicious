@@ -7,26 +7,34 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-10 px-2">
-<div>
-    <p>Book a Table at The Dine Restaurant</p>
-</div>
-<form action="" method="post">{% csrf_token %}
-    {{ wizard.management_form }}
-    {% if wizard.form.forms %}
-    {{ wizard.form.management_form }}
-    {% for form in wizard.form.forms %}
-    {{ form|as_crispy_errors }}
-    {% endfor %}
-    {% else %}
-    {{ wizard.form | crispy }}
-    {% endif %}
-    {% if wizard.steps.prev %}
-    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% translate "prev step" %}</button>
-    <input type="submit" value="Confirm Booking"/>
-    {% else %}
-    <input type="submit" value="Book Now"/>
-    {% endif %}
-</form>
+<div class="row p-5">
+    <div class="col-1" ></div>
+    <div class="col-10">
+        <h5>Book a Table at The Dine Restaurant</h5>
+        <form action="" method="post">{% csrf_token %}
+            {{ wizard.management_form }}
+            {% if wizard.form.forms %}
+            {{ wizard.form.management_form }}
+            {% for form in wizard.form.forms %}
+            {{ form|as_crispy_errors }}
+            {% endfor %}
+            {% else %}
+            {{ wizard.form | crispy }}
+            {% endif %}
+            <div class="row">
+            {% if wizard.steps.prev %}
+                <div class="col-md">
+                    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% translate "Prev Step" %}</button>
+                    <input type="submit" value="Confirm Booking"/>
+                </div>
+            {% else %}
+                <div class="col-md">
+                    <input type="submit" value="Book Now"/>
+                </div>
+            {% endif %}
+            </div>
+        </form>
+    </div>
+    <div class="col-1" ></div>
 </div>
 {% endblock %}

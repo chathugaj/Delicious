@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="." class="form mb-2 p-2 form-style" method="POST">
-  {% csrf_token %}
-  <p>Do you want to cancel your reservation for {{object.reservation_date}} - {{object.time_slot}} ?</p>
-    <input type="submit" value="Yes" /> <a href="../">Cancel</a>
-</form>
+<div class="row p-5 text-center">
+  <div class="col-1"></div>
+  <div class="col-10">
+    <h5 class="p-3">Confirm cancellation</h5>
+    <form action="." class="form form-style" method="POST">
+      {% csrf_token %}
+      <p>Do you want to cancel your reservation for {{object.reservation_date}} - {{object.time_slot}} ?</p>
+      <input type="button" onclick="location.href='/reservation/list';" value="No" />
+      <input type="submit" value="Yes" />
+    </form>
+  </div>
+  <div class="col-1"></div>
+</div>
 {% endblock %}

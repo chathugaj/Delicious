@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="text-center">
-    <h2 class="px-5 pt-3">Reservation details</h2>
-    <div class="px-5 py3">
-        <p>{{object.reservation_date}} - {{ object.get_time_slot_display }}</p>
-        <p>Table {{object.table_number}} is booked for {{object.number_of_guests}} guests</p>
-        <p>{{object.customer}}</p>
+<div class="row p-5">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h5>Reservation details</h5>
+        <div class="row p-3 text-container">
+            <div class="col-12">
+                <p>{{object.reservation_date}} - {{ object.get_time_slot_display }}</p>
+                <p>Table {{object.table_number}} is booked for {{object.number_of_guests}} guests</p>
+                <p>{{object.customer}}</p>
+            </div>
+        </div>
+        <div class="col-12 pt-3 pb-3" >
+            <input type="button" onclick="location.href='/reservation/list';" value="View Reservations List" />
+            <input type="button" onclick="location.href='{% url 'reservation:reservation-update' object.id %}';" value="Update" />
+            <input type="button" onclick="location.href='{% url 'reservation:reservation-delete' object.id %}';" value="Delete" />
+        </div>
     </div>
+    <div class="col-1"></div>
 </div>
 
 {% endblock %}

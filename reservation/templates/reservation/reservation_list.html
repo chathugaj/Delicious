@@ -1,36 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="table-responsive mx-3">
-    <h2 class="m-3">Reservations</h2>
-    <table class="table table-striped">
-        <tbody>
-        {% for instance in object_list %}
-        <tr>
-            <th class="row">
-                <a href="{% url 'reservation:reservation-details' instance.id %}">{{instance.reservation_date}}</a>
-            </th>
-            <td>
-                {{ instance.get_time_slot_display }}
-            </td>
-            {% if request.user.is_staff %}
-            <td>
-                {{ instance.email }}
-            </td>
-            {% endif %}
-            <td>
-                <a href="{% url 'reservation:reservation-update' instance.id %}">
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </a>
-            </td>
-            <td>
-                <a href="{% url 'reservation:reservation-delete' instance.id %}">
-                    <i class="fa-regular fa-trash-can"></i>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="row p-5">
+    <div class="table-responsive">
+        <h5>Reservations</h5>
+        <table class="table table-striped">
+            <tbody>
+            {% for instance in object_list %}
+            <tr>
+                <th class="row">
+                    <a href="{% url 'reservation:reservation-details' instance.id %}">{{instance.reservation_date}}</a>
+                </th>
+                <td>
+                    {{ instance.get_time_slot_display }}
+                </td>
+                {% if request.user.is_staff %}
+                <td>
+                    {{ instance.email }}
+                </td>
+                {% endif %}
+                <td>
+                    <a href="{% url 'reservation:reservation-update' instance.id %}">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'reservation:reservation-delete' instance.id %}">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

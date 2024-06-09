@@ -3,12 +3,17 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="col-10">
-  <h2>Update reservation</h2>
-<form action="." class="form mb-2 p-2 form-style" method="post">
-  {% csrf_token %}
-  {{form|crispy}}
-  <input type="submit" value="Update" />
-</form>
+<div class="row p-5">
+  <div class="col-1" ></div>
+  <div class="col-10">
+    <h5>Update reservation</h5>
+    <form action="." class="form mb-2 p-2 form-style" method="post">
+      {% csrf_token %}
+      {{form|crispy}}
+      <input type="button" onclick="location.href='/reservation/list';" value="Cancel" />
+      <input type="submit" value="Update" />
+    </form>
+  </div>
+  <div class="col-1" ></div>
 </div>
 {% endblock %}
