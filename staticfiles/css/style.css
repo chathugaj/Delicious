@@ -76,7 +76,7 @@ hr {
 }
 
 .navbar>.container,
-.navbar>.container-fluid,
+/*.navbar>.container-fluid,*/
 .navbar>.container-lg,
 .navbar>.container-md,
 .navbar>.container-sm,
@@ -84,6 +84,10 @@ hr {
 .navbar>.container-xxl {
     background-color: #ebe0d6;
     height: 8vh;
+}
+
+.navbar>.container {
+    height: 12vh;
 }
 
 .navbar > * > .navbar-brand {
@@ -109,7 +113,7 @@ hr {
 }
 
 .container,
-.container-fluid,
+/*.container-fluid,*/
 .container-lg,
 .container-md,
 .container-sm,

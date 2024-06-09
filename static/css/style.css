@@ -83,7 +83,7 @@ hr {
 .navbar>.container-xl,
 .navbar>.container-xxl {
     background-color: #ebe0d6;
-    height: 8vh;
+    height: 12vh;
 }
 
 .navbar > * > .navbar-brand {
@@ -109,7 +109,6 @@ hr {
 }
 
 .container,
-.container-fluid,
 .container-lg,
 .container-md,
 .container-sm,
