@@ -27,8 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEV_MODE = os.environ.get('DEV_MODE', False)
-DEBUG = DEV_MODE
+DEV_MODE = os.environ.get('DEV_MODE')
+DEBUG = DEV_MODE == '1'
 
 ALLOWED_HOSTS = ['localhost', '.herokuapp.com', ]
 
@@ -110,7 +110,7 @@ WSGI_APPLICATION = 'The_Dine_restaurant.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if DEV_MODE:
+if DEV_MODE == '1':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
