@@ -1,5 +1,6 @@
 from datetime import date, timedelta
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.template.loader import render_to_string
@@ -70,7 +71,7 @@ class ReservationDeleteView(DeleteView):
         return reverse('reservation:reservation_list')
 
 
-class ReservationCreateWizardView(SessionWizardView):
+class ReservationCreateWizardView(LoginRequiredMixin, SessionWizardView):
     """This view handles the multi-step table reservation"""
     form_list = [ReservationModelForm, CustomerModelForm]
     template_name = 'reservation/reservation_create.html'
