@@ -80,7 +80,7 @@ hr {
 }
 
 .navbar>.container,
-/*.navbar>.container-fluid,*/
+.navbar>.container-fluid,
 .navbar>.container-lg,
 .navbar>.container-md,
 .navbar>.container-sm,
@@ -117,7 +117,7 @@ hr {
 }
 
 .container,
-/*.container-fluid,*/
+.container-fluid,
 .container-lg,
 .container-md,
 .container-sm,
