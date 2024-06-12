@@ -24,8 +24,10 @@ class ReservationListView(LoginRequiredMixin, ListView):
             # return all bookings until before yesterday
             return Reservation.objects.filter(reservation_date__gt=(date.today() - timedelta(days=1)))
         else:
-            customer_ = list(Customer.objects.filter(username=self.request.user.username))[0]
-            return Reservation.objects.filter(customer=customer_, reservation_date__gt=(date.today() - timedelta(days=1)))
+            customer_list = list(Customer.objects.filter(username=self.request.user.username))
+            if customer_list:
+                customer_ = customer_list[0]
+                return Reservation.objects.filter(customer=customer_, reservation_date__gt=(date.today() - timedelta(days=1)))
 
 
 class ReservationDetailView(LoginRequiredMixin, DetailView):

@@ -39,13 +39,6 @@ class Customer(models.Model):
     def __str__(self) -> str:
         return str(self.email)
 
-def create_customer(sender, instance, created, **kwargs):
-    if created:
-        Customer.objects.create(owner=instance)
-
-
-post_save.connect(create_customer, sender=User)
-
 
 class Reservation(models.Model):
     """The model that handles the reservations"""
