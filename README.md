@@ -231,10 +231,29 @@ Testing was performed manually after create a test matrix
 Lighthouse browser tool was used to test the website's compatibility with standards, performance, etc....
 ![Lighthouse](./docs/images/lighthouse.png)
 
+HTML validation testing was performed using [w3 validator](https://validator.w3.org/).
+![HTML validator](./docs/images/html_validation.png)
+
 ## Deployment
 
 ### Version control
 This is version controlled using git and github.
+
+### Running locally
+Contributors can run the application locally as follows;
+1. Checkout the repository 
+```commandline
+git checkout https://github.com/chathugaj/The-Dine-Restaurant.git
+```
+2. To start with a clean slate remove or backup the db.sqlite3 file.
+Which is the local database. Run the following command to create the new dbfile.
+```commandline
+python manage.py migrate
+```
+3. To run the application locally, exectue the following command.
+```commandline
+python manage.py runserver
+```
 
 ### Heroku deployment
 This is deployed in Heroku. Deployment steps are as follows;
@@ -263,3 +282,17 @@ Mentor:
   - Gareth McGirr
 Fonts
   - Fontawesome
+
+## Test execution Screenshots
+
+### Admin user screenshots
+![Create reservation](./docs/testexecution/admin_creating_reservation.png)
+![Reservation confirmation](./docs/testexecution/admin_reservation_confirmation.png)
+![Reservation details](./docs/testexecution/admin_reservation_details_view.png)
+![Reservation update](./docs/testexecution/admin_reservation_update.png)
+![Rservation list](./docs/testexecution/admin_view_reservations.png)
+
+### End user screenshots
+![User view reservation](./docs/testexecution/user_view_reservations.png)
+![User update reservation](./docs/testexecution/user_reservation_update.png)
+![User cancel reservation](./docs/testexecution/user_cancel_reservation_own.png)
