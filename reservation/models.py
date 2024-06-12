@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
 from django.urls import reverse
 from django.utils import timezone
 
@@ -32,9 +34,17 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=25)
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=23)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return str(self.email)
+
+def create_customer(sender, instance, created, **kwargs):
+    if created:
+        Customer.objects.create(owner=instance)
+
+
+post_save.connect(create_customer, sender=User)
 
 
 class Reservation(models.Model):

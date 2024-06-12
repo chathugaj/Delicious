@@ -1,19 +1,17 @@
 from datetime import date, timedelta
 
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from formtools.wizard.views import SessionWizardView
 
-from .forms import ReservationModelForm, CustomerModelForm
-from .models import Reservation, Customer, Table
-
-from django.core.mail import send_mail
 from The_Dine_restaurant.settings import EMAIL_HOST_USER
+from .forms import ReservationModelForm, CustomerModelForm
+from .models import Reservation, Customer
 
 
 # Create your views here.
@@ -26,7 +24,7 @@ class ReservationListView(LoginRequiredMixin, ListView):
             # return all bookings until before yesterday
             return Reservation.objects.filter(reservation_date__gt=(date.today() - timedelta(days=1)))
         else:
-            customer_ = list(Customer.objects.filter(email=self.request.user.username))[0]
+            customer_ = list(Customer.objects.filter(owner=self.request.user))[0]
             return Reservation.objects.filter(customer=customer_, reservation_date__gt=(date.today() - timedelta(days=1)))
 
 
@@ -80,14 +78,12 @@ class ReservationCreateWizardView(LoginRequiredMixin, SessionWizardView):
         reservation_form = form_dict['0']
         customer_form = form_dict['1']
 
-        customer_email = customer_form.instance
-        customer_list = list(Customer.objects.all().filter(email=customer_email))
+        customer_ = list(Customer.objects.all().filter(owner=self.request.user))[0]
 
-        if not customer_list:
+        # Update customer details
+        if customer_:
             customer_email = customer_form.save()
             customer_ = list(Customer.objects.all().filter(email=customer_email))[0]
-        else:
-            customer_ = customer_list[0]
 
         # Save without committing to the database
         reservation = reservation_form.save(commit=False)
