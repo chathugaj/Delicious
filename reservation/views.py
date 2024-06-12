@@ -24,7 +24,7 @@ class ReservationListView(LoginRequiredMixin, ListView):
             # return all bookings until before yesterday
             return Reservation.objects.filter(reservation_date__gt=(date.today() - timedelta(days=1)))
         else:
-            customer_ = list(Customer.objects.filter(owner=self.request.user))[0]
+            customer_ = list(Customer.objects.filter(username=self.request.user.username))[0]
             return Reservation.objects.filter(customer=customer_, reservation_date__gt=(date.today() - timedelta(days=1)))
 
 
@@ -78,12 +78,12 @@ class ReservationCreateWizardView(LoginRequiredMixin, SessionWizardView):
         reservation_form = form_dict['0']
         customer_form = form_dict['1']
 
-        customer_ = list(Customer.objects.all().filter(owner=self.request.user))[0]
+        customer = customer_form.save(commit=False)
+        customer_email = customer
+        customer.username = self.request.user.username
+        customer.save()
 
-        # Update customer details
-        if customer_:
-            customer_email = customer_form.save()
-            customer_ = list(Customer.objects.all().filter(email=customer_email))[0]
+        customer_ = list(Customer.objects.all().filter(email=customer_email))[0]
 
         # Save without committing to the database
         reservation = reservation_form.save(commit=False)

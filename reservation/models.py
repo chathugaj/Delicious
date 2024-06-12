@@ -34,7 +34,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=25)
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=23)
-    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=100, null=True)
 
     def __str__(self) -> str:
         return str(self.email)
