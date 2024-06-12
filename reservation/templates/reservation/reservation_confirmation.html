@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="text-center">
-    <p>{{object.reservation_date}} - {{ object.get_time_slot_display }}</p>
-    <p>Table {{object.table_number}} is booked for {{object.number_of_guests}} guests</p>
-    <p>{{object.customer}}</p>
-</div>
-
-<div class="text-center">
-    <p>We have sent the booking confirmation to your email.</p>
-
-    {% if request.user.is_authenticated is None %}
-    <p>Please create an account to view and manage your bookings.
-        <a href="{% url 'account_signup' %}" >Sign Up</a>
-    </p>
-
-    <p>Have an account already? <a href="#" >Sign In</a></p>
-    {% endif %}
+<div class="row p-5">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <h5>Reservation confirmed</h5>
+        <div class="row p-3 text-container">
+            <div class="col-12">
+                <p>{{object.reservation_date}} - {{ object.get_time_slot_display }}</p>
+                <p>Table {{object.table_number}} is booked for {{object.number_of_guests}} guests</p>
+                <p>{{object.customer}}</p>
+            </div>
+        </div>
+        <div class="col-12 pt-3 pb-3" >
+            <input type="button" onclick="location.href='/reservation/list';" value="View Reservations List" />
+        </div>
+    </div>
+    <div class="col-1"></div>
 </div>
 
 {% endblock %}
