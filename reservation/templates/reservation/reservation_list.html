@@ -14,11 +14,9 @@
                 <td>
                     {{ instance.get_time_slot_display }}
                 </td>
-                {% if request.user.is_staff %}
                 <td>
-                    {{ instance.email }}
+                    {{ instance.customer.first_name }} {{ instance.customer.last_name }}
                 </td>
-                {% endif %}
                 <td>
                     <a href="{% url 'reservation:reservation-update' instance.id %}">
                         <i class="fa-regular fa-pen-to-square"></i>
