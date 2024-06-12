@@ -24,10 +24,7 @@ class ReservationListView(LoginRequiredMixin, ListView):
             # return all bookings until before yesterday
             return Reservation.objects.filter(reservation_date__gt=(date.today() - timedelta(days=1)))
         else:
-            customer_list = list(Customer.objects.filter(username=self.request.user.username))
-            if customer_list:
-                customer_ = customer_list[0]
-                return Reservation.objects.filter(customer=customer_, reservation_date__gt=(date.today() - timedelta(days=1)))
+            return Reservation.objects.filter(username=self.request.user.username, reservation_date__gt=(date.today() - timedelta(days=1)))
 
 
 class ReservationDetailView(LoginRequiredMixin, DetailView):
@@ -90,6 +87,7 @@ class ReservationCreateWizardView(LoginRequiredMixin, SessionWizardView):
         # Save without committing to the database
         reservation = reservation_form.save(commit=False)
         reservation.customer = customer_
+        reservation.username = self.request.user.username
         assignable_table_response = ReservationModelForm.find_assignable_table(reservation.reservation_date, reservation.time_slot,
                                                                                reservation.number_of_guests)
         if assignable_table_response is None:

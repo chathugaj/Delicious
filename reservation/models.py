@@ -47,6 +47,8 @@ class Reservation(models.Model):
     reservation_date = models.DateField(default=timezone.now)
     number_of_guests = models.IntegerField(default=2)
     table = models.ForeignKey(Table, on_delete=models.DO_NOTHING)
+    username = models.CharField(max_length=100, null=True)
+
 
     class Meta:
         """Ordering with reservation_date and time_slot"""
