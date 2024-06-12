@@ -25,13 +25,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'reservation:reservation_list' %}">Reservations</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ request.user.username }}
-                  </a>
-                  <ul class="dropdown-menu text-center">
-                    <li><a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a></li>
-                  </ul>
+                <li class="nav-item dropdown dropdown-menu-end drop-end">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        {{ request.user.username }}
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <li><a class="nav-link text-center" href="{% url 'account_logout' %}">Sign Out</a></li>
+                      </ul>
+                    </div>
+<!--                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                    {{ request.user.username }}-->
+<!--                  </a>-->
+<!--                  <ul class="dropdown-menu text-center">-->
+<!--                    <li><a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a></li>-->
+<!--                  </ul>-->
                 </li>
                 {% else %}
                 <li class="nav-item">
